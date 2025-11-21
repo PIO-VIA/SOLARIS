@@ -1,65 +1,86 @@
-import Image from "next/image";
+'use client';
+
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Stars, Float } from '@react-three/drei';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import Navbar from '@/components/ui/Navbar';
+import Sun3D from '@/components/three/Sun3D';
+import { Suspense } from 'react';
+
+function HeroScene() {
+  return (
+    <Canvas camera={{ position: [0, 0, 15], fov: 45 }}>
+      <Suspense fallback={null}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+
+        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+          <group position={[4, 0, -5]}>
+            <Sun3D />
+          </group>
+        </Float>
+
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+      </Suspense>
+    </Canvas>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="relative w-full min-h-screen overflow-hidden">
+      <Navbar />
+
+      {/* 3D Background */}
+      <div className="absolute inset-0 z-0">
+        <HeroScene />
+      </div>
+
+      {/* Content Overlay */}
+      <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 max-w-7xl mx-auto pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="max-w-2xl pointer-events-auto"
+        >
+          <div className="flex items-center gap-2 mb-6">
+            <span className="px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/50 text-orange-400 text-xs font-bold tracking-wider uppercase flex items-center gap-2">
+              <Sparkles className="w-3 h-3" />
+              Interactive Experience
+            </span>
+          </div>
+
+          <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500">
+            Explore the <br />
+            <span className="text-orange-500">Solar System</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-lg leading-relaxed">
+            Embark on a journey through space. Discover the secrets of our celestial neighborhood in an immersive 3D experience.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/explore"
+              className="group px-8 py-4 bg-white text-black rounded-full font-bold text-lg flex items-center gap-2 hover:bg-orange-400 hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(251,146,60,0.6)]"
+            >
+              Start Journey
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              href="/quiz"
+              className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300"
+            >
+              Take Quiz
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </main>
   );
 }
