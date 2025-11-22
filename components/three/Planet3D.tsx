@@ -15,12 +15,17 @@ interface Planet3DProps {
 export default function Planet3D({ planet }: Planet3DProps) {
     const meshRef = useRef<THREE.Mesh>(null);
     const orbitRef = useRef<THREE.Group>(null);
+    const moonOrbitRef = useRef<THREE.Group>(null);
+    const saturnRingsRef = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
     const setGlobalHovered = useStore((state) => state.setHoveredPlanet);
     const router = useRouter();
 
     // Load texture if available
     const texture = planet.texture ? useLoader(THREE.TextureLoader, planet.texture) : null;
+
+    // Load moon texture for Earth
+    const moonTexture = planet.id === 'earth' ? useLoader(THREE.TextureLoader, '/moon.jpg') : null;
 
     // Random starting position for orbit to make it look more natural
     const initialAngle = useRef(Math.random() * Math.PI * 2);
@@ -31,6 +36,14 @@ export default function Planet3D({ planet }: Planet3DProps) {
         }
         if (orbitRef.current) {
             orbitRef.current.rotation.y += planet.speed * delta * 10; // Speed up for visualization
+        }
+        // Moon orbit around Earth
+        if (moonOrbitRef.current && planet.id === 'earth') {
+            moonOrbitRef.current.rotation.y += delta * 2; // Moon orbits faster
+        }
+        // Rotate Saturn's rings slowly
+        if (saturnRingsRef.current && planet.id === 'saturn') {
+            saturnRingsRef.current.rotation.z += delta * 0.1;
         }
     });
 
@@ -68,6 +81,29 @@ export default function Planet3D({ planet }: Planet3DProps) {
                         color={texture ? '#ffffff' : planet.color}
                     />
                 </mesh>
+
+                {/* Moon for Earth */}
+                {planet.id === 'earth' && moonTexture && (
+                    <group ref={moonOrbitRef}>
+                        <mesh position={[planet.size + 1.5, 0, 0]}>
+                            <sphereGeometry args={[0.27, 16, 16]} />
+                            <meshStandardMaterial map={moonTexture} />
+                        </mesh>
+                    </group>
+                )}
+
+                {/* Saturn's Rings */}
+                {planet.id === 'saturn' && (
+                    <mesh ref={saturnRingsRef} rotation={[Math.PI / 2.3, 0, 0]}>
+                        <ringGeometry args={[planet.size * 1.2, planet.size * 2, 64]} />
+                        <meshStandardMaterial
+                            color="#C9B18C"
+                            transparent
+                            opacity={0.8}
+                            side={THREE.DoubleSide}
+                        />
+                    </mesh>
+                )}
 
                 {/* Label */}
                 <Html position={[0, planet.size + 1, 0]} center distanceFactor={15}>

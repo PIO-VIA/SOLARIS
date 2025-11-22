@@ -21,8 +21,9 @@ function SpaceBackground() {
     );
 }
 
-function SinglePlanetScene({ color, size, texture }: { color: string; size: number; texture?: string }) {
+function SinglePlanetScene({ color, size, texture, planetId }: { color: string; size: number; texture?: string; planetId: string }) {
     const loadedTexture = texture ? useLoader(THREE.TextureLoader, texture) : null;
+    const moonTexture = planetId === 'earth' ? useLoader(THREE.TextureLoader, '/moon.jpg') : null;
 
     return (
         <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
@@ -32,15 +33,38 @@ function SinglePlanetScene({ color, size, texture }: { color: string; size: numb
                 <pointLight position={[10, 10, 10]} intensity={1} />
 
                 <Float speed={2} rotationIntensity={0.5} floatIntensity={0.2}>
-                    <mesh rotation={[0, 0, 0]}>
-                        <sphereGeometry args={[2.5, 64, 64]} />
-                        <meshStandardMaterial
-                            map={loadedTexture}
-                            color={loadedTexture ? '#ffffff' : color}
-                            roughness={0.7}
-                            metalness={0.2}
-                        />
-                    </mesh>
+                    <group>
+                        <mesh rotation={[0, 0, 0]}>
+                            <sphereGeometry args={[2.5, 64, 64]} />
+                            <meshStandardMaterial
+                                map={loadedTexture}
+                                color={loadedTexture ? '#ffffff' : color}
+                                roughness={0.7}
+                                metalness={0.2}
+                            />
+                        </mesh>
+
+                        {/* Moon for Earth */}
+                        {planetId === 'earth' && moonTexture && (
+                            <mesh position={[4, 0, 0]}>
+                                <sphereGeometry args={[0.6, 32, 32]} />
+                                <meshStandardMaterial map={moonTexture} />
+                            </mesh>
+                        )}
+
+                        {/* Saturn's Rings */}
+                        {planetId === 'saturn' && (
+                            <mesh rotation={[Math.PI / 2.3, 0, 0]}>
+                                <ringGeometry args={[3, 5, 64]} />
+                                <meshStandardMaterial
+                                    color="#C9B18C"
+                                    transparent
+                                    opacity={0.8}
+                                    side={THREE.DoubleSide}
+                                />
+                            </mesh>
+                        )}
+                    </group>
                 </Float>
 
                 <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
@@ -70,7 +94,7 @@ export default function PlanetPage() {
                 {/* Left: 3D Model */}
                 <div className="h-[50vh] lg:h-screen relative order-1 lg:order-1">
                     <div className="absolute inset-0 z-0">
-                        <SinglePlanetScene color={planet.color} size={planet.size} texture={planet.texture} />
+                        <SinglePlanetScene color={planet.color} size={planet.size} texture={planet.texture} planetId={planet.id} />
                     </div>
 
                     <button

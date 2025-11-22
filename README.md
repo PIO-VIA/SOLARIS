@@ -16,6 +16,9 @@ Solar System Explorer est une application éducative et interactive qui permet d
 - **Visualisation 3D interactive** : Navigation libre dans le système solaire avec contrôles de caméra
 - **Textures réalistes** : Images authentiques de la NASA pour chaque planète et le soleil
 - **Animations orbitales** : Les planètes tournent autour du soleil avec des vitesses proportionnelles
+- **Lune de la Terre** : La Lune orbite autour de la Terre avec texture réaliste
+- **Anneaux de Saturne** : Anneaux 3D animés avec rotation réaliste
+- **Ceinture d'astéroïdes** : 800+ astéroïdes entre Mars et Jupiter avec positions aléatoires
 - **Pages détaillées** : Cliquez sur une planète pour voir ses informations complètes
 - **Interface moderne** : Design épuré avec Tailwind CSS et animations Framer Motion
 - **Quiz interactif** : Testez vos connaissances sur le système solaire
@@ -53,10 +56,11 @@ sun/
 │   └── globals.css             # Styles globaux
 ├── components/
 │   ├── three/                  # Composants 3D
-│   │   ├── Planet3D.tsx       # Composant de planète avec texture
+│   │   ├── Planet3D.tsx       # Composant de planète avec Lune et anneaux
 │   │   ├── SolarSystem.tsx    # Système solaire complet
 │   │   ├── Scene.tsx          # Configuration de la scène 3D
-│   │   └── Sun3D.tsx          # Soleil avec texture
+│   │   ├── Sun3D.tsx          # Soleil avec texture
+│   │   └── AsteroidBelt.tsx   # Ceinture d'astéroïdes (800+ instances)
 │   └── ui/                     # Composants UI
 │       ├── Navbar.tsx         # Barre de navigation
 │       └── PlanetCard.tsx     # Cartes des planètes
@@ -67,6 +71,7 @@ sun/
 │   ├── mercury.jpg            # Texture de Mercure
 │   ├── venus_atmosphere.jpg   # Texture de Vénus
 │   ├── earth.jpg              # Texture de la Terre
+│   ├── moon.jpg               # Texture de la Lune
 │   ├── mars.jpg               # Texture de Mars
 │   ├── jupiter.jpg            # Texture de Jupiter
 │   ├── saturn.jpg             # Texture de Saturne
@@ -137,6 +142,34 @@ Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 - `/` - Vue du système solaire complet
 - `/planet/[id]` - Détails d'une planète spécifique (mercury, venus, earth, mars, jupiter, saturn, uranus, neptune)
 - `/quiz` - Quiz sur le système solaire
+
+## Éléments du Système Solaire
+
+### La Lune
+
+- Orbite autour de la Terre avec une vitesse réaliste
+- Texture haute résolution de la surface lunaire
+- Taille proportionnelle (environ 1/4 du diamètre de la Terre)
+- Visible à la fois dans la vue principale et la vue détaillée de la Terre
+
+### Anneaux de Saturne
+
+- Anneaux 3D avec géométrie `ringGeometry`
+- Rotation lente et réaliste (delta * 0.1)
+- Couleur authentique (#C9B18C) avec transparence
+- Inclinaison à 23° (Math.PI / 2.3) pour correspondre à la réalité
+- Rayon intérieur : 1.2x la taille de Saturne
+- Rayon extérieur : 2x la taille de Saturne
+
+### Ceinture d'Astéroïdes
+
+- 800 astéroïdes générés procéduralement avec `InstancedMesh`
+- Positionnés entre Mars (distance 25) et Jupiter (distance 35)
+- Rayon intérieur : 28 unités, rayon extérieur : 32 unités
+- Chaque astéroïde a une taille, position et rotation aléatoires
+- Géométrie dodécaèdre pour un aspect réaliste
+- Rotation lente de l'ensemble de la ceinture (delta * 0.02)
+- Variation verticale légère pour un effet 3D
 
 ## Personnalisation
 
