@@ -3,24 +3,43 @@
 import { useParams, useRouter } from 'next/navigation';
 import { planets } from '@/lib/data';
 import Navbar from '@/components/ui/Navbar';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { OrbitControls, Stars, Float } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Thermometer, Ruler, Weight, ArrowLeftRight } from 'lucide-react';
 import { Suspense } from 'react';
+import * as THREE from 'three';
 
-function SinglePlanetScene({ color, size }: { color: string; size: number }) {
+function SpaceBackground() {
+    const texture = useLoader(THREE.TextureLoader, '/stars_milky_way.jpg');
+
+    return (
+        <mesh>
+            <sphereGeometry args={[200, 60, 40]} />
+            <meshBasicMaterial map={texture} side={THREE.BackSide} />
+        </mesh>
+    );
+}
+
+function SinglePlanetScene({ color, size, texture }: { color: string; size: number; texture?: string }) {
+    const loadedTexture = texture ? useLoader(THREE.TextureLoader, texture) : null;
+
     return (
         <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
             <Suspense fallback={null}>
+                <SpaceBackground />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} intensity={1} />
-                <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
 
                 <Float speed={2} rotationIntensity={0.5} floatIntensity={0.2}>
                     <mesh rotation={[0, 0, 0]}>
                         <sphereGeometry args={[2.5, 64, 64]} />
-                        <meshStandardMaterial color={color} roughness={0.7} metalness={0.2} />
+                        <meshStandardMaterial
+                            map={loadedTexture}
+                            color={loadedTexture ? '#ffffff' : color}
+                            roughness={0.7}
+                            metalness={0.2}
+                        />
                     </mesh>
                 </Float>
 
@@ -51,7 +70,7 @@ export default function PlanetPage() {
                 {/* Left: 3D Model */}
                 <div className="h-[50vh] lg:h-screen relative order-1 lg:order-1">
                     <div className="absolute inset-0 z-0">
-                        <SinglePlanetScene color={planet.color} size={planet.size} />
+                        <SinglePlanetScene color={planet.color} size={planet.size} texture={planet.texture} />
                     </div>
 
                     <button

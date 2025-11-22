@@ -25,6 +25,7 @@ export const planets: PlanetData[] = [
         size: 0.8,
         distance: 10,
         speed: 0.04,
+        texture: '/mercury.jpg',
         description: "The smallest planet in our solar system and closest to the Sun—is only slightly larger than Earth's Moon. Mercury is the fastest planet, zipping around the Sun every 88 Earth days.",
         stats: {
             temp: '167°C',
@@ -40,6 +41,7 @@ export const planets: PlanetData[] = [
         size: 1.5,
         distance: 15,
         speed: 0.015,
+        texture: '/venus_atmosphere.jpg',
         description: "Spinning in the opposite direction to most planets, Venus is the hottest planet, and one of the brightest objects in the sky. It has a thick atmosphere that traps heat in a runaway greenhouse effect.",
         stats: {
             temp: '464°C',
@@ -55,6 +57,7 @@ export const planets: PlanetData[] = [
         size: 1.6,
         distance: 20,
         speed: 0.01,
+        texture: '/earth.jpg',
         description: "Our home planet is the third planet from the Sun, and the only place we know of so far that's inhabited by living things. It's also the only planet in our solar system with liquid water on the surface.",
         stats: {
             temp: '15°C',
@@ -70,6 +73,7 @@ export const planets: PlanetData[] = [
         size: 1.1,
         distance: 25,
         speed: 0.008,
+        texture: '/mars.jpg',
         description: "Mars is a dusty, cold, desert world with a very thin atmosphere. There is strong evidence that Mars was – billions of years ago – wetter and warmer, with a thick atmosphere.",
         stats: {
             temp: '-65°C',
@@ -85,6 +89,7 @@ export const planets: PlanetData[] = [
         size: 3.5,
         distance: 35,
         speed: 0.004,
+        texture: '/jupiter.jpg',
         description: "Jupiter is more than twice as massive as the other planets of our solar system combined. The giant planet's Great Red Spot is a centuries-old storm bigger than Earth.",
         stats: {
             temp: '-110°C',
@@ -100,6 +105,7 @@ export const planets: PlanetData[] = [
         size: 3,
         distance: 45,
         speed: 0.003,
+        texture: '/saturn.jpg',
         description: "Adorned with a dazzling, complex system of icy rings, Saturn is unique in our solar system. The other giant planets have rings, but none are as spectacular as Saturn's.",
         stats: {
             temp: '-140°C',
@@ -115,6 +121,7 @@ export const planets: PlanetData[] = [
         size: 2.2,
         distance: 55,
         speed: 0.002,
+        texture: '/uranus.jpg',
         description: "Uranus rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side.",
         stats: {
             temp: '-195°C',
@@ -130,6 +137,7 @@ export const planets: PlanetData[] = [
         size: 2.1,
         distance: 65,
         speed: 0.001,
+        texture: '/neptune.jpg',
         description: "Neptune is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
         stats: {
             temp: '-200°C',

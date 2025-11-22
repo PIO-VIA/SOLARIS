@@ -1,11 +1,12 @@
 'use client';
 
 import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export default function Sun3D() {
     const meshRef = useRef<THREE.Mesh>(null);
+    const texture = useLoader(THREE.TextureLoader, '/sun.jpg');
 
     useFrame((state, delta) => {
         if (meshRef.current) {
@@ -16,7 +17,7 @@ export default function Sun3D() {
     return (
         <mesh ref={meshRef}>
             <sphereGeometry args={[5, 32, 32]} />
-            <meshBasicMaterial color="#FDB813" />
+            <meshBasicMaterial map={texture} />
             <pointLight intensity={2} distance={100} decay={2} color="#FDB813" />
         </mesh>
     );

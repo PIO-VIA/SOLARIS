@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { Text, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { PlanetData } from '@/lib/data';
@@ -18,6 +18,9 @@ export default function Planet3D({ planet }: Planet3DProps) {
     const [hovered, setHovered] = useState(false);
     const setGlobalHovered = useStore((state) => state.setHoveredPlanet);
     const router = useRouter();
+
+    // Load texture if available
+    const texture = planet.texture ? useLoader(THREE.TextureLoader, planet.texture) : null;
 
     // Random starting position for orbit to make it look more natural
     const initialAngle = useRef(Math.random() * Math.PI * 2);
@@ -60,7 +63,10 @@ export default function Planet3D({ planet }: Planet3DProps) {
                     scale={hovered ? 1.2 : 1}
                 >
                     <sphereGeometry args={[planet.size, 32, 32]} />
-                    <meshStandardMaterial color={planet.color} />
+                    <meshStandardMaterial
+                        map={texture}
+                        color={texture ? '#ffffff' : planet.color}
+                    />
                 </mesh>
 
                 {/* Label */}
