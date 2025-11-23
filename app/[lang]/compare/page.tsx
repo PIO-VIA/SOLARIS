@@ -52,15 +52,27 @@ export default function ComparePage() {
 
                     {/* Planet 1 Selection */}
                     <div className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col gap-6">
-                        <select
-                            value={planet1Id}
-                            onChange={(e) => setPlanet1Id(e.target.value)}
-                            className="w-full bg-black/50 border border-white/20 rounded-xl p-3 text-white focus:outline-none focus:border-orange-500 transition-colors"
-                        >
-                            {planets.map(p => (
-                                <option key={p.id} value={p.id}>{t(`planets.${p.id}`)}</option>
-                            ))}
-                        </select>
+                        <div className="relative">
+                            <select
+                                value={planet1Id}
+                                onChange={(e) => setPlanet1Id(e.target.value)}
+                                className="w-full bg-gradient-to-br from-orange-500/10 to-red-500/10 border-2 border-orange-500/30 rounded-xl p-4 pr-10 text-white font-semibold focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50 transition-all duration-300 hover:border-orange-500/50 hover:bg-orange-500/20 appearance-none cursor-pointer backdrop-blur-sm"
+                                style={{
+                                    backgroundImage: 'linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%)'
+                                }}
+                            >
+                                {planets.map(p => (
+                                    <option key={p.id} value={p.id} className="bg-gray-900 text-white py-2">
+                                        {t(`planets.${p.id}`)}
+                                    </option>
+                                ))}
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
 
                         <div className="flex flex-col items-center">
                             <div className="w-48 h-48 rounded-full mb-6 relative overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
@@ -82,15 +94,27 @@ export default function ComparePage() {
 
                     {/* Planet 2 Selection */}
                     <div className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col gap-6">
-                        <select
-                            value={planet2Id}
-                            onChange={(e) => setPlanet2Id(e.target.value)}
-                            className="w-full bg-black/50 border border-white/20 rounded-xl p-3 text-white focus:outline-none focus:border-orange-500 transition-colors"
-                        >
-                            {planets.map(p => (
-                                <option key={p.id} value={p.id}>{t(`planets.${p.id}`)}</option>
-                            ))}
-                        </select>
+                        <div className="relative">
+                            <select
+                                value={planet2Id}
+                                onChange={(e) => setPlanet2Id(e.target.value)}
+                                className="w-full bg-gradient-to-br from-purple-500/10 to-blue-500/10 border-2 border-purple-500/30 rounded-xl p-4 pr-10 text-white font-semibold focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/20 appearance-none cursor-pointer backdrop-blur-sm"
+                                style={{
+                                    backgroundImage: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)'
+                                }}
+                            >
+                                {planets.map(p => (
+                                    <option key={p.id} value={p.id} className="bg-gray-900 text-white py-2">
+                                        {t(`planets.${p.id}`)}
+                                    </option>
+                                ))}
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
 
                         <div className="flex flex-col items-center">
                             <div className="w-48 h-48 rounded-full mb-6 relative overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">

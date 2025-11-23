@@ -185,5 +185,12 @@
         "techStack": "Technology Stack",
         "goalTitle": "Educational Goal",
         "goalText": "Our mission is to make astronomy accessible and engaging for everyone. By combining accurate data with immersive 3D visualizations, we hope to inspire the next generation of space explorers and scientists."
+    },
+    "notFound": {
+        "title": "Lost in Space",
+        "subtitle": "404 - Page Not Found",
+        "message": "Looks like you've drifted into uncharted territory. This page doesn't exist in our solar system.",
+        "backHome": "Return to Earth",
+        "explore": "Explore Planets"
     }
 }

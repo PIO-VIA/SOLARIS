@@ -185,5 +185,12 @@
         "techStack": "Stack Technologique",
         "goalTitle": "Objectif Éducatif",
         "goalText": "Notre mission est de rendre l'astronomie accessible et attrayante pour tous. En combinant des données précises avec des visualisations 3D immersives, nous espérons inspirer la prochaine génération d'explorateurs de l'espace et de scientifiques."
+    },
+    "notFound": {
+        "title": "Perdu dans l'Espace",
+        "subtitle": "404 - Page Introuvable",
+        "message": "On dirait que vous avez dérivé vers un territoire inexploré. Cette page n'existe pas dans notre système solaire.",
+        "backHome": "Retour sur Terre",
+        "explore": "Explorer les Planètes"
     }
 }
