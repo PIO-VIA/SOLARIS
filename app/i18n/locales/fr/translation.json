@@ -8,6 +8,7 @@
     "nav": {
         "home": "Accueil",
         "about": "À propos",
+        "explore":"Explorer",
         "quiz": "Quiz",
         "compare": "Comparer"
     },
@@ -184,7 +185,15 @@
         "intro": "SolarIS est une plateforme éducative interactive conçue pour donner vie aux merveilles de notre système solaire. Construit avec des technologies web modernes, il offre un moyen unique d'explorer les corps célestes directement depuis votre navigateur.",
         "techStack": "Stack Technologique",
         "goalTitle": "Objectif Éducatif",
-        "goalText": "Notre mission est de rendre l'astronomie accessible et attrayante pour tous. En combinant des données précises avec des visualisations 3D immersives, nous espérons inspirer la prochaine génération d'explorateurs de l'espace et de scientifiques."
+        "goalText": "Notre mission est de rendre l'astronomie accessible et attrayante pour tous. En combinant des données précises avec des visualisations 3D immersives, nous espérons inspirer la prochaine génération d'explorateurs de l'espace et de scientifiques.",
+        "contact": {
+            "title": "Contactez-nous",
+            "name": "Nom",
+            "email": "Email",
+            "message": "Message",
+            "submit": "Envoyer",
+            "success": "Message envoyé avec succès !"
+        }
     },
     "notFound": {
         "title": "Perdu dans l'Espace",
