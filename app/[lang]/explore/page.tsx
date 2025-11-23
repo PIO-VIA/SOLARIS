@@ -7,14 +7,19 @@ import { useStore } from '@/lib/store';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useParams } from 'next/navigation';
+import { useTranslation } from '@/app/i18n/client';
 
 export default function ExplorePage() {
+    const params = useParams();
+    const lang = params.lang as string;
+    const { t } = useTranslation(lang, 'translation');
     const hoveredPlanetId = useStore((state) => state.hoveredPlanet);
     const hoveredPlanet = planets.find(p => p.id === hoveredPlanetId);
 
     return (
         <main className="relative w-full h-screen overflow-hidden bg-black">
-            <Navbar />
+            <Navbar lng={lang} />
 
             <div className="absolute inset-0 z-0">
                 <Scene />
@@ -24,7 +29,7 @@ export default function ExplorePage() {
             <div className="absolute bottom-10 left-0 right-0 z-10 px-6 pointer-events-none">
                 <div className="max-w-7xl mx-auto flex justify-between items-end">
                     <div className="text-white/50 text-sm font-mono">
-                        <p>Drag to rotate • Scroll to zoom • Click to explore</p>
+                        <p>{t('home.subtitle')}</p>
                     </div>
 
                     <AnimatePresence>
@@ -35,13 +40,15 @@ export default function ExplorePage() {
                                 exit={{ opacity: 0, y: 20 }}
                                 className="bg-black/60 backdrop-blur-md border border-white/10 p-6 rounded-2xl max-w-md pointer-events-auto"
                             >
-                                <h2 className="text-2xl font-bold text-white mb-2">{hoveredPlanet.name}</h2>
-                                <p className="text-gray-300 text-sm mb-4 line-clamp-2">{hoveredPlanet.description}</p>
+                                <h2 className="text-2xl font-bold text-white mb-2">{t(`planets.${hoveredPlanet.id}`)}</h2>
+                                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                                    {t(`planetsData.${hoveredPlanet.id}.description`)}
+                                </p>
                                 <Link
-                                    href={`/planet/${hoveredPlanet.id}`}
+                                    href={`/${lang}/planet/${hoveredPlanet.id}`}
                                     className="text-orange-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
                                 >
-                                    View Details <ArrowRight className="w-4 h-4" />
+                                    {t('home.learnMore')} <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </motion.div>
                         )}

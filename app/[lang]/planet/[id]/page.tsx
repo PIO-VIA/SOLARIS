@@ -6,9 +6,10 @@ import Navbar from '@/components/ui/Navbar';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { OrbitControls, Stars, Float } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Thermometer, Ruler, Weight, ArrowLeftRight } from 'lucide-react';
+import { ArrowLeft, Thermometer, Ruler, Weight, ArrowLeftRight, Lightbulb } from 'lucide-react';
 import { Suspense } from 'react';
 import * as THREE from 'three';
+import { useTranslation } from '@/app/i18n/client';
 
 function SpaceBackground() {
     const texture = useLoader(THREE.TextureLoader, '/stars_milky_way.jpg');
@@ -76,6 +77,8 @@ function SinglePlanetScene({ color, size, texture, planetId }: { color: string; 
 export default function PlanetPage() {
     const params = useParams();
     const router = useRouter();
+    const lang = params.lang as string;
+    const { t } = useTranslation(lang, 'translation');
     const planet = planets.find((p) => p.id === params.id);
 
     if (!planet) {
@@ -86,9 +89,12 @@ export default function PlanetPage() {
         );
     }
 
+    const planetData = t(`planetsData.${planet.id}`, { returnObjects: true }) as any;
+    const planetName = t(`planets.${planet.id}`);
+
     return (
         <main className="relative w-full min-h-screen bg-black text-white overflow-x-hidden">
-            <Navbar />
+            <Navbar lng={lang} />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
                 {/* Left: 3D Model */}
@@ -113,45 +119,56 @@ export default function PlanetPage() {
                         transition={{ duration: 0.8 }}
                     >
                         <h1 className="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                            {planet.name}
+                            {planetName}
                         </h1>
 
                         <p className="text-lg text-gray-300 leading-relaxed mb-12">
-                            {planet.description}
+                            {planetData.description}
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-orange-500/50 transition-colors">
                                 <div className="flex items-center gap-3 mb-2 text-orange-400">
                                     <Thermometer className="w-5 h-5" />
-                                    <span className="text-sm font-bold uppercase tracking-wider">Temperature</span>
+                                    <span className="text-sm font-bold uppercase tracking-wider">{t('planetPage.temperature')}</span>
                                 </div>
-                                <p className="text-2xl font-mono">{planet.stats.temp}</p>
+                                <p className="text-2xl font-mono">{planetData.stats.temp}</p>
                             </div>
 
                             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-colors">
                                 <div className="flex items-center gap-3 mb-2 text-blue-400">
                                     <Ruler className="w-5 h-5" />
-                                    <span className="text-sm font-bold uppercase tracking-wider">Radius</span>
+                                    <span className="text-sm font-bold uppercase tracking-wider">{t('planetPage.radius')}</span>
                                 </div>
-                                <p className="text-2xl font-mono">{planet.stats.radius}</p>
+                                <p className="text-2xl font-mono">{planetData.stats.radius}</p>
                             </div>
 
                             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-colors">
                                 <div className="flex items-center gap-3 mb-2 text-purple-400">
                                     <Weight className="w-5 h-5" />
-                                    <span className="text-sm font-bold uppercase tracking-wider">Mass</span>
+                                    <span className="text-sm font-bold uppercase tracking-wider">{t('planetPage.mass')}</span>
                                 </div>
-                                <p className="text-2xl font-mono">{planet.stats.mass}</p>
+                                <p className="text-2xl font-mono">{planetData.stats.mass}</p>
                             </div>
 
                             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-green-500/50 transition-colors">
                                 <div className="flex items-center gap-3 mb-2 text-green-400">
                                     <ArrowLeftRight className="w-5 h-5" />
-                                    <span className="text-sm font-bold uppercase tracking-wider">Distance from Sun</span>
+                                    <span className="text-sm font-bold uppercase tracking-wider">{t('planetPage.distance')}</span>
                                 </div>
-                                <p className="text-2xl font-mono">{planet.stats.distanceFromSun}</p>
+                                <p className="text-2xl font-mono">{planetData.stats.distanceFromSun}</p>
                             </div>
+                        </div>
+
+                        {/* Fun Fact Section */}
+                        <div className="p-6 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/20">
+                            <div className="flex items-center gap-3 mb-3 text-yellow-400">
+                                <Lightbulb className="w-6 h-6" />
+                                <span className="text-lg font-bold">{t('planetPage.funFact')}</span>
+                            </div>
+                            <p className="text-lg text-gray-200 italic">
+                                "{planetData.funFact}"
+                            </p>
                         </div>
                     </motion.div>
                 </div>

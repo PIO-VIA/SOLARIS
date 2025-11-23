@@ -6,24 +6,26 @@ import { motion } from 'framer-motion';
 import { Rocket, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useTranslation } from '@/app/i18n/client';
+import LanguageSwitcher from '../LanguageSwitcher';
 
-const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Explore', href: '/explore' },
-    { name: 'Quiz', href: '/quiz' },
-    { name: 'About', href: '/about' },
-];
-
-export default function Navbar() {
+export default function Navbar({ lng }: { lng: string }) {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const { t } = useTranslation(lng, 'translation');
+
+    const navItems = [
+        { name: t('nav.home'), href: `/${lng}` },
+        { name: t('nav.about'), href: `/${lng}/about` },
+        { name: t('nav.quiz'), href: `/${lng}/quiz` },
+    ];
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
             <div className="max-w-7xl mx-auto">
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl px-6 py-3 flex items-center justify-between shadow-xl">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 text-white font-bold text-xl tracking-wider group">
+                    <Link href={`/${lng}`} className="flex items-center gap-2 text-white font-bold text-xl tracking-wider group">
                         <div className="p-2 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg group-hover:scale-110 transition-transform">
                             <Rocket className="w-5 h-5 text-white" />
                         </div>
@@ -50,6 +52,7 @@ export default function Navbar() {
                                 )}
                             </Link>
                         ))}
+                        <LanguageSwitcher lng={lng} />
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -81,6 +84,9 @@ export default function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
+                        <div className="p-2">
+                            <LanguageSwitcher lng={lng} />
+                        </div>
                     </motion.div>
                 )}
             </div>

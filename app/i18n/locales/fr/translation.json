@@ -1,0 +1,184 @@
+{
+    "home": {
+        "title": "Explorez le Système Solaire",
+        "subtitle": "Un voyage interactif en 3D à travers notre voisinage cosmique",
+        "startJourney": "Commencer le voyage",
+        "learnMore": "En savoir plus"
+    },
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "quiz": "Quiz"
+    },
+    "planets": {
+        "mercury": "Mercure",
+        "venus": "Vénus",
+        "earth": "Terre",
+        "mars": "Mars",
+        "jupiter": "Jupiter",
+        "saturn": "Saturne",
+        "uranus": "Uranus",
+        "neptune": "Neptune",
+        "sun": "Soleil"
+    },
+    "planetsData": {
+        "mercury": {
+            "description": "La plus petite planète de notre système solaire et la plus proche du Soleil — est à peine plus grande que la Lune de la Terre. Mercure est la planète la plus rapide, faisant le tour du Soleil tous les 88 jours terrestres.",
+            "funFact": "Une année sur Mercure ne dure que 88 jours.",
+            "stats": {
+                "temp": "167°C",
+                "radius": "2 439,7 km",
+                "mass": "3,285 × 10^23 kg",
+                "distanceFromSun": "58 millions km"
+            }
+        },
+        "venus": {
+            "description": "Tournant dans la direction opposée à la plupart des planètes, Vénus est la planète la plus chaude et l'un des objets les plus brillants du ciel. Elle possède une atmosphère épaisse qui piège la chaleur dans un effet de serre galopant.",
+            "funFact": "Vénus tourne dans le sens des aiguilles d'une montre sur son axe.",
+            "stats": {
+                "temp": "464°C",
+                "radius": "6 051,8 km",
+                "mass": "4,867 × 10^24 kg",
+                "distanceFromSun": "108 millions km"
+            }
+        },
+        "earth": {
+            "description": "Notre planète natale est la troisième planète à partir du Soleil, et le seul endroit que nous connaissons jusqu'à présent qui soit habité par des êtres vivants. C'est aussi la seule planète de notre système solaire avec de l'eau liquide à la surface.",
+            "funFact": "La Terre est la seule planète qui ne porte pas le nom d'un dieu.",
+            "stats": {
+                "temp": "15°C",
+                "radius": "6 371 km",
+                "mass": "5,972 × 10^24 kg",
+                "distanceFromSun": "149,6 millions km"
+            }
+        },
+        "mars": {
+            "description": "Mars est un monde désertique, froid et poussiéreux avec une atmosphère très fine. Il existe de fortes preuves que Mars était – il y a des milliards d'années – plus humide et plus chaude, avec une atmosphère épaisse.",
+            "funFact": "Mars abrite la plus haute montagne du système solaire.",
+            "stats": {
+                "temp": "-65°C",
+                "radius": "3 389,5 km",
+                "mass": "6,39 × 10^23 kg",
+                "distanceFromSun": "227,9 millions km"
+            }
+        },
+        "jupiter": {
+            "description": "Jupiter est plus de deux fois plus massive que les autres planètes de notre système solaire réunies. La Grande Tache Rouge de la planète géante est une tempête vieille de plusieurs siècles, plus grande que la Terre.",
+            "funFact": "Jupiter a la journée la plus courte de toutes les planètes.",
+            "stats": {
+                "temp": "-110°C",
+                "radius": "69 911 km",
+                "mass": "1,898 × 10^27 kg",
+                "distanceFromSun": "778,5 millions km"
+            }
+        },
+        "saturn": {
+            "description": "Ornée d'un système complexe et éblouissant d'anneaux de glace, Saturne est unique dans notre système solaire. Les autres planètes géantes ont des anneaux, mais aucun n'est aussi spectaculaire que ceux de Saturne.",
+            "funFact": "Saturne pourrait flotter dans l'eau car elle est principalement composée de gaz.",
+            "stats": {
+                "temp": "-140°C",
+                "radius": "58 232 km",
+                "mass": "5,683 × 10^26 kg",
+                "distanceFromSun": "1,4 milliard km"
+            }
+        },
+        "uranus": {
+            "description": "Uranus tourne à un angle de près de 90 degrés par rapport au plan de son orbite. Cette inclinaison unique donne l'impression qu'Uranus tourne sur le côté.",
+            "funFact": "Uranus atteint les températures les plus froides de toutes les planètes.",
+            "stats": {
+                "temp": "-195°C",
+                "radius": "25 362 km",
+                "mass": "8,681 × 10^25 kg",
+                "distanceFromSun": "2,9 milliards km"
+            }
+        },
+        "neptune": {
+            "description": "Neptune est sombre, froide et fouettée par des vents supersoniques. C'est la première planète localisée grâce à des calculs mathématiques plutôt que par télescope.",
+            "funFact": "Neptune a des vents supersoniques.",
+            "stats": {
+                "temp": "-200°C",
+                "radius": "24 622 km",
+                "mass": "1,024 × 10^26 kg",
+                "distanceFromSun": "4,5 milliards km"
+            }
+        }
+    },
+    "planetPage": {
+        "orbitPeriod": "Période orbitale",
+        "radius": "Rayon",
+        "temperature": "Température",
+        "distance": "Distance du Soleil",
+        "mass": "Masse",
+        "moons": "Lunes",
+        "back": "Retour au Système Solaire",
+        "funFact": "Le saviez-vous ?"
+    },
+    "quizQuestions": [
+        {
+            "question": "Quelle planète est la plus proche du Soleil ?",
+            "options": [
+                "Vénus",
+                "Mercure",
+                "Mars",
+                "Terre"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "Quelle planète est connue sous le nom de Planète Rouge ?",
+            "options": [
+                "Jupiter",
+                "Saturne",
+                "Mars",
+                "Vénus"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "Quelle est la plus grande planète de notre système solaire ?",
+            "options": [
+                "Saturne",
+                "Jupiter",
+                "Uranus",
+                "Neptune"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "Quelle planète possède le système d'anneaux le plus spectaculaire ?",
+            "options": [
+                "Jupiter",
+                "Uranus",
+                "Saturne",
+                "Neptune"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "Quelle planète tourne sur le côté ?",
+            "options": [
+                "Neptune",
+                "Mars",
+                "Terre",
+                "Uranus"
+            ],
+            "answer": 3
+        }
+    ],
+    "quiz": {
+        "title": "Quiz du Système Solaire",
+        "question": "Question",
+        "score": "Score",
+        "next": "Question suivante",
+        "finish": "Terminer le quiz",
+        "restart": "Recommencer le quiz",
+        "result": "Vous avez obtenu {{score}} sur {{total}} !"
+    },
+    "about": {
+        "title": "À propos de SolarIS",
+        "intro": "SolarIS est une plateforme éducative interactive conçue pour donner vie aux merveilles de notre système solaire. Construit avec des technologies web modernes, il offre un moyen unique d'explorer les corps célestes directement depuis votre navigateur.",
+        "techStack": "Stack Technologique",
+        "goalTitle": "Objectif Éducatif",
+        "goalText": "Notre mission est de rendre l'astronomie accessible et attrayante pour tous. En combinant des données précises avec des visualisations 3D immersives, nous espérons inspirer la prochaine génération d'explorateurs de l'espace et de scientifiques."
+    }
+}

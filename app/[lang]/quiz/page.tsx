@@ -2,12 +2,18 @@
 
 import { useState } from 'react';
 import Navbar from '@/components/ui/Navbar';
-import { quizQuestions } from '@/lib/data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle, RefreshCw } from 'lucide-react';
 import clsx from 'clsx';
+import { useParams } from 'next/navigation';
+import { useTranslation } from '@/app/i18n/client';
 
 export default function QuizPage() {
+    const params = useParams();
+    const lang = params.lang as string;
+    const { t } = useTranslation(lang, 'translation');
+    const quizQuestions = t('quizQuestions', { returnObjects: true }) as any[];
+
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [showScore, setShowScore] = useState(false);
@@ -45,7 +51,7 @@ export default function QuizPage() {
 
     return (
         <main className="min-h-screen w-full bg-black text-white flex flex-col">
-            <Navbar />
+            <Navbar lng={lang} />
 
             <div className="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
                 {/* Background Elements */}
@@ -64,15 +70,15 @@ export default function QuizPage() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 text-center"
                             >
-                                <h2 className="text-4xl font-bold mb-4">Quiz Completed!</h2>
+                                <h2 className="text-4xl font-bold mb-4">{t('quiz.finish')}</h2>
                                 <p className="text-xl text-gray-300 mb-8">
-                                    You scored <span className="text-orange-400 font-bold">{score}</span> out of {quizQuestions.length}
+                                    {t('quiz.result', { score, total: quizQuestions.length })}
                                 </p>
                                 <button
                                     onClick={resetQuiz}
                                     className="px-8 py-3 bg-orange-500 hover:bg-orange-600 rounded-full font-bold transition-colors flex items-center gap-2 mx-auto"
                                 >
-                                    <RefreshCw className="w-5 h-5" /> Try Again
+                                    <RefreshCw className="w-5 h-5" /> {t('quiz.restart')}
                                 </button>
                             </motion.div>
                         ) : (
@@ -85,10 +91,10 @@ export default function QuizPage() {
                             >
                                 <div className="flex justify-between items-center mb-8">
                                     <span className="text-sm font-mono text-gray-400">
-                                        Question {currentQuestion + 1}/{quizQuestions.length}
+                                        {t('quiz.question')} {currentQuestion + 1}/{quizQuestions.length}
                                     </span>
                                     <span className="text-sm font-mono text-orange-400">
-                                        Score: {score}
+                                        {t('quiz.score')}: {score}
                                     </span>
                                 </div>
 
@@ -97,7 +103,7 @@ export default function QuizPage() {
                                 </h2>
 
                                 <div className="grid gap-4">
-                                    {quizQuestions[currentQuestion].options.map((option, index) => {
+                                    {quizQuestions[currentQuestion].options.map((option: string, index: number) => {
                                         const isSelected = selectedAnswer === index;
                                         const isCorrect = index === quizQuestions[currentQuestion].answer;
 

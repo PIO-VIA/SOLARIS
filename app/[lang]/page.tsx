@@ -8,6 +8,8 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import Navbar from '@/components/ui/Navbar';
 import Sun3D from '@/components/three/Sun3D';
 import { Suspense } from 'react';
+import { useParams } from 'next/navigation';
+import { useTranslation } from '@/app/i18n/client';
 
 function HeroScene() {
   return (
@@ -30,9 +32,13 @@ function HeroScene() {
 }
 
 export default function Home() {
+  const params = useParams();
+  const lang = params.lang as string;
+  const { t } = useTranslation(lang, 'translation');
+
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
-      <Navbar />
+      <Navbar lng={lang} />
 
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
@@ -55,28 +61,28 @@ export default function Home() {
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500">
-            Explore the <br />
-            <span className="text-orange-500">Solar System</span>
+            {t('home.title').split(' ').slice(0, -2).join(' ')} <br />
+            <span className="text-orange-500">{t('home.title').split(' ').slice(-2).join(' ')}</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-lg leading-relaxed">
-            Embark on a journey through space. Discover the secrets of our celestial neighborhood in an immersive 3D experience.
+            {t('home.subtitle')}
           </p>
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/explore"
+              href={`/${lang}/explore`}
               className="group px-8 py-4 bg-white text-black rounded-full font-bold text-lg flex items-center gap-2 hover:bg-orange-400 hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(251,146,60,0.6)]"
             >
-              Start Journey
+              {t('home.startJourney')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
 
             <Link
-              href="/quiz"
+              href={`/${lang}/quiz`}
               className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300"
             >
-              Take Quiz
+              {t('home.learnMore')}
             </Link>
           </div>
         </motion.div>

@@ -1,0 +1,184 @@
+{
+    "home": {
+        "title": "Explore the Solar System",
+        "subtitle": "A 3D interactive journey through our cosmic neighborhood",
+        "startJourney": "Start Journey",
+        "learnMore": "Learn More"
+    },
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "quiz": "Quiz"
+    },
+    "planets": {
+        "mercury": "Mercury",
+        "venus": "Venus",
+        "earth": "Earth",
+        "mars": "Mars",
+        "jupiter": "Jupiter",
+        "saturn": "Saturn",
+        "uranus": "Uranus",
+        "neptune": "Neptune",
+        "sun": "Sun"
+    },
+    "planetsData": {
+        "mercury": {
+            "description": "The smallest planet in our solar system and closest to the Sun—is only slightly larger than Earth's Moon. Mercury is the fastest planet, zipping around the Sun every 88 Earth days.",
+            "funFact": "A year on Mercury is just 88 days long.",
+            "stats": {
+                "temp": "167°C",
+                "radius": "2,439.7 km",
+                "mass": "3.285 × 10^23 kg",
+                "distanceFromSun": "58 million km"
+            }
+        },
+        "venus": {
+            "description": "Spinning in the opposite direction to most planets, Venus is the hottest planet, and one of the brightest objects in the sky. It has a thick atmosphere that traps heat in a runaway greenhouse effect.",
+            "funFact": "Venus spins clockwise on its axis.",
+            "stats": {
+                "temp": "464°C",
+                "radius": "6,051.8 km",
+                "mass": "4.867 × 10^24 kg",
+                "distanceFromSun": "108 million km"
+            }
+        },
+        "earth": {
+            "description": "Our home planet is the third planet from the Sun, and the only place we know of so far that's inhabited by living things. It's also the only planet in our solar system with liquid water on the surface.",
+            "funFact": "Earth is the only planet not named after a god.",
+            "stats": {
+                "temp": "15°C",
+                "radius": "6,371 km",
+                "mass": "5.972 × 10^24 kg",
+                "distanceFromSun": "149.6 million km"
+            }
+        },
+        "mars": {
+            "description": "Mars is a dusty, cold, desert world with a very thin atmosphere. There is strong evidence that Mars was – billions of years ago – wetter and warmer, with a thick atmosphere.",
+            "funFact": "Mars is home to the tallest mountain in the solar system.",
+            "stats": {
+                "temp": "-65°C",
+                "radius": "3,389.5 km",
+                "mass": "6.39 × 10^23 kg",
+                "distanceFromSun": "227.9 million km"
+            }
+        },
+        "jupiter": {
+            "description": "Jupiter is more than twice as massive as the other planets of our solar system combined. The giant planet's Great Red Spot is a centuries-old storm bigger than Earth.",
+            "funFact": "Jupiter has the shortest day of all the planets.",
+            "stats": {
+                "temp": "-110°C",
+                "radius": "69,911 km",
+                "mass": "1.898 × 10^27 kg",
+                "distanceFromSun": "778.5 million km"
+            }
+        },
+        "saturn": {
+            "description": "Adorned with a dazzling, complex system of icy rings, Saturn is unique in our solar system. The other giant planets have rings, but none are as spectacular as Saturn's.",
+            "funFact": "Saturn could float in water because it is mostly gas.",
+            "stats": {
+                "temp": "-140°C",
+                "radius": "58,232 km",
+                "mass": "5.683 × 10^26 kg",
+                "distanceFromSun": "1.4 billion km"
+            }
+        },
+        "uranus": {
+            "description": "Uranus rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side.",
+            "funFact": "Uranus hits the coldest temperatures of any planet.",
+            "stats": {
+                "temp": "-195°C",
+                "radius": "25,362 km",
+                "mass": "8.681 × 10^25 kg",
+                "distanceFromSun": "2.9 billion km"
+            }
+        },
+        "neptune": {
+            "description": "Neptune is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
+            "funFact": "Neptune has supersonic winds.",
+            "stats": {
+                "temp": "-200°C",
+                "radius": "24,622 km",
+                "mass": "1.024 × 10^26 kg",
+                "distanceFromSun": "4.5 billion km"
+            }
+        }
+    },
+    "planetPage": {
+        "orbitPeriod": "Orbital Period",
+        "radius": "Radius",
+        "temperature": "Temperature",
+        "distance": "Distance from Sun",
+        "mass": "Mass",
+        "moons": "Moons",
+        "back": "Back to Solar System",
+        "funFact": "Did You Know?"
+    },
+    "quizQuestions": [
+        {
+            "question": "Which planet is closest to the Sun?",
+            "options": [
+                "Venus",
+                "Mercury",
+                "Mars",
+                "Earth"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "options": [
+                "Jupiter",
+                "Saturn",
+                "Mars",
+                "Venus"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "What is the largest planet in our solar system?",
+            "options": [
+                "Saturn",
+                "Jupiter",
+                "Uranus",
+                "Neptune"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "Which planet has the most spectacular ring system?",
+            "options": [
+                "Jupiter",
+                "Uranus",
+                "Saturn",
+                "Neptune"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "Which planet rotates on its side?",
+            "options": [
+                "Neptune",
+                "Mars",
+                "Earth",
+                "Uranus"
+            ],
+            "answer": 3
+        }
+    ],
+    "quiz": {
+        "title": "Solar System Quiz",
+        "question": "Question",
+        "score": "Score",
+        "next": "Next Question",
+        "finish": "Finish Quiz",
+        "restart": "Restart Quiz",
+        "result": "You scored {{score}} out of {{total}}!"
+    },
+    "about": {
+        "title": "About SolarIS",
+        "intro": "SolarIS is an interactive educational platform designed to bring the wonders of our solar system to life. Built with modern web technologies, it offers a unique way to explore celestial bodies right from your browser.",
+        "techStack": "Technology Stack",
+        "goalTitle": "Educational Goal",
+        "goalText": "Our mission is to make astronomy accessible and engaging for everyone. By combining accurate data with immersive 3D visualizations, we hope to inspire the next generation of space explorers and scientists."
+    }
+}
