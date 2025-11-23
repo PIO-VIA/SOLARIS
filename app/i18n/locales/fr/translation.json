@@ -8,7 +8,12 @@
     "nav": {
         "home": "Accueil",
         "about": "À propos",
-        "quiz": "Quiz"
+        "quiz": "Quiz",
+        "compare": "Comparer"
+    },
+    "compare": {
+        "title": "Comparaison de Planètes",
+        "subtitle": "Sélectionnez deux planètes pour comparer leurs statistiques côte à côte."
     },
     "planets": {
         "mercury": "Mercure",

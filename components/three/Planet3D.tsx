@@ -19,6 +19,7 @@ export default function Planet3D({ planet }: Planet3DProps) {
     const saturnRingsRef = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
     const setGlobalHovered = useStore((state) => state.setHoveredPlanet);
+    const orbitSpeed = useStore((state) => state.orbitSpeed);
     const router = useRouter();
 
     // Load texture if available
@@ -35,7 +36,7 @@ export default function Planet3D({ planet }: Planet3DProps) {
             meshRef.current.rotation.y += delta * 0.5;
         }
         if (orbitRef.current) {
-            orbitRef.current.rotation.y += planet.speed * delta * 10; // Speed up for visualization
+            orbitRef.current.rotation.y += planet.speed * delta * 10 * orbitSpeed; // Speed up for visualization
         }
         // Moon orbit around Earth
         if (moonOrbitRef.current && planet.id === 'earth') {

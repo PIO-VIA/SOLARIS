@@ -28,8 +28,20 @@ export default function ExplorePage() {
             {/* Overlay UI */}
             <div className="absolute bottom-10 left-0 right-0 z-10 px-6 pointer-events-none">
                 <div className="max-w-7xl mx-auto flex justify-between items-end">
-                    <div className="text-white/50 text-sm font-mono">
-                        <p>{t('home.subtitle')}</p>
+                    <div className="text-white/50 text-sm font-mono pointer-events-auto">
+                        <p className="mb-2">{t('home.subtitle')}</p>
+                        <div className="flex items-center gap-4 bg-black/40 backdrop-blur-md p-3 rounded-xl border border-white/10">
+                            <span className="text-xs uppercase font-bold text-orange-400">Speed</span>
+                            <input
+                                type="range"
+                                min="0"
+                                max="5"
+                                step="0.1"
+                                defaultValue="1"
+                                onChange={(e) => useStore.getState().setOrbitSpeed(parseFloat(e.target.value))}
+                                className="w-32 accent-orange-500 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer"
+                            />
+                        </div>
                     </div>
 
                     <AnimatePresence>

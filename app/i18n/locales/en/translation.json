@@ -8,7 +8,12 @@
     "nav": {
         "home": "Home",
         "about": "About",
-        "quiz": "Quiz"
+        "quiz": "Quiz",
+        "compare": "Compare"
+    },
+    "compare": {
+        "title": "Planet Comparison",
+        "subtitle": "Select two planets to compare their statistics side by side."
     },
     "planets": {
         "mercury": "Mercury",
