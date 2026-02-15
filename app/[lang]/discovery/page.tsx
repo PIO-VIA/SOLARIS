@@ -3,11 +3,15 @@ import MarsRoverGallery from '@/components/nasa/MarsRoverGallery';
 import NEOTracker from '@/components/nasa/NEOTracker';
 import SpaceWeather from '@/components/nasa/SpaceWeather';
 import AstronomyFacts from '@/components/nasa/AstronomyFacts';
+import Navbar from '@/components/ui/Navbar';
 import { Rocket } from 'lucide-react';
 
-export default function DiscoveryPage() {
+export default async function DiscoveryPage({ params }: { params: Promise<{ lang: string }> }) {
+    const { lang } = await params;
+
     return (
-        <div className="min-height-screen bg-black pt-24 pb-20">
+        <div className="min-h-screen bg-black pt-24 pb-20">
+            <Navbar lng={lang} />
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">

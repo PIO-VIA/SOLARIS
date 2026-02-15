@@ -1,6 +1,30 @@
 const NASA_API_KEY = process.env.NEXT_PUBLIC_NASA_API_KEY || 'DEMO_KEY';
 const BASE_URL = 'https://api.nasa.gov';
 
+// Log status on load (masked)
+if (typeof window === 'undefined') {
+    console.log(`[NASA API] Using key: ${NASA_API_KEY === 'DEMO_KEY' ? 'DEMO_KEY' : NASA_API_KEY.substring(0, 4) + '...'}`);
+}
+
+async function fetchWithTimeout(url: string, options: any = {}, timeout = 10000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    try {
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+        clearTimeout(id);
+        return response;
+    } catch (error: any) {
+        clearTimeout(id);
+        if (error.name === 'AbortError') {
+            throw new Error('Request timed out after ' + timeout + 'ms');
+        }
+        throw error;
+    }
+}
+
 export interface APODData {
     date: string;
     explanation: string;
@@ -56,10 +80,10 @@ export interface NEO {
 
 export async function getAPOD(): Promise<APODData | null> {
     try {
-        const res = await fetch(`${BASE_URL}/planetary/apod?api_key=${NASA_API_KEY}`, {
-            next: { revalidate: 3600 } // Cache for 1 hour
+        const res = await fetchWithTimeout(`${BASE_URL}/planetary/apod?api_key=${NASA_API_KEY}`, {
+            next: { revalidate: 3600 }
         });
-        if (!res.ok) throw new Error('Failed to fetch APOD');
+        if (!res.ok) throw new Error(`NASA API Error: ${res.status} ${res.statusText}`);
         return res.json();
     } catch (error) {
         console.error('Error fetching APOD:', error);
@@ -69,10 +93,10 @@ export async function getAPOD(): Promise<APODData | null> {
 
 export async function getMarsPhotos(rover: string = 'curiosity'): Promise<MarsPhoto[]> {
     try {
-        const res = await fetch(`${BASE_URL}/mars-photos/api/v1/rovers/${rover}/latest_photos?api_key=${NASA_API_KEY}`, {
-            next: { revalidate: 86400 } // Cache for 24 hours
+        const res = await fetchWithTimeout(`${BASE_URL}/mars-photos/api/v1/rovers/${rover}/latest_photos?api_key=${NASA_API_KEY}`, {
+            next: { revalidate: 86400 }
         });
-        if (!res.ok) throw new Error('Failed to fetch Mars photos');
+        if (!res.ok) throw new Error(`NASA API Error: ${res.status} ${res.statusText}`);
         const data = await res.json();
         return data.latest_photos || [];
     } catch (error) {
@@ -84,10 +108,10 @@ export async function getMarsPhotos(rover: string = 'curiosity'): Promise<MarsPh
 export async function getNEOs(): Promise<NEO[]> {
     const today = new Date().toISOString().split('T')[0];
     try {
-        const res = await fetch(`${BASE_URL}/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${NASA_API_KEY}`, {
+        const res = await fetchWithTimeout(`${BASE_URL}/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${NASA_API_KEY}`, {
             next: { revalidate: 3600 }
         });
-        if (!res.ok) throw new Error('Failed to fetch NEOs');
+        if (!res.ok) throw new Error(`NASA API Error: ${res.status} ${res.statusText}`);
         const data = await res.json();
         const neos = data.near_earth_objects[today] || [];
         return neos;
@@ -99,10 +123,10 @@ export async function getNEOs(): Promise<NEO[]> {
 
 export async function getSpaceWeather(): Promise<any[]> {
     try {
-        const res = await fetch(`${BASE_URL}/DONKI/CME?api_key=${NASA_API_KEY}`, {
+        const res = await fetchWithTimeout(`${BASE_URL}/DONKI/CME?api_key=${NASA_API_KEY}`, {
             next: { revalidate: 3600 }
         });
-        if (!res.ok) throw new Error('Failed to fetch space weather');
+        if (!res.ok) throw new Error(`NASA API Error: ${res.status} ${res.statusText}`);
         return res.json();
     } catch (error) {
         console.error('Error fetching space weather:', error);
