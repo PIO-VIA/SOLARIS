@@ -8,7 +8,8 @@
     "nav": {
         "home": "Accueil",
         "about": "À propos",
-        "explore":"Explorer",
+        "explore": "Explorer",
+        "discovery": "Découverte",
         "quiz": "Quiz",
         "compare": "Comparer"
     },

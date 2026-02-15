@@ -16,7 +16,8 @@ export default function Navbar({ lng }: { lng: string }) {
 
     const navItems = [
         { name: t('nav.home'), href: `/${lng}` },
-        {name:t('nav.explore'), href:`/${lng}/explore`},
+        { name: t('nav.explore'), href: `/${lng}/explore` },
+        { name: t('nav.discovery'), href: `/${lng}/discovery` },
         { name: t('nav.compare'), href: `/${lng}/compare` },
         { name: t('nav.quiz'), href: `/${lng}/quiz` },
         { name: t('nav.about'), href: `/${lng}/about` },
