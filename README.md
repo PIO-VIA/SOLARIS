@@ -92,8 +92,8 @@ sun/
 
 1. **Cloner le dépôt**
 ```bash
-git clone <url-du-repo>
-cd sun
+git clone https://github.com/PIO-VIA/SOLARIS.git
+cd SOLARIS
 ```
 
 2. **Installer les dépendances**

@@ -1,40 +1,77 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Orbitron';
+  src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+}
+
+@theme {
+  --color-space-deep: #05070A;
+  --color-space-light: #0D1117;
+  --color-solar-orange: #FB923C;
+  --color-solar-glow: #FDB813;
+  --color-star-white: #F8FAFC;
+
+  --font-orbitron: "Orbitron", sans-serif;
+}
+
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 10, 10, 20;
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 5, 7, 10;
+  --background-end-rgb: 13, 17, 23;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: radial-gradient(circle at center, var(--color-space-light) 0%, var(--color-space-deep) 100%);
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: var(--font-orbitron);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 146, 60, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(251, 146, 60, 0.5);
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.15);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--color-space-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background: rgba(251, 146, 60, 0.3);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--color-solar-orange);
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(251, 146, 60, 0.5);
+  }
+
+  .text-glow-white {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
 }
