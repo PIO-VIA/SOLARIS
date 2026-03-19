@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Rocket, Menu, X } from 'lucide-react';
+import { Rocket, Menu, X, Globe, Compass, Info, Microscope, BarChart2, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from '@/app/i18n/client';
@@ -15,48 +15,55 @@ export default function Navbar({ lng }: { lng: string }) {
     const { t } = useTranslation(lng, 'translation');
 
     const navItems = [
-        { name: t('nav.home'), href: `/${lng}` },
-        { name: t('nav.explore'), href: `/${lng}/explore` },
-        { name: t('nav.discovery'), href: `/${lng}/discovery` },
-        { name: t('nav.compare'), href: `/${lng}/compare` },
-        { name: t('nav.quiz'), href: `/${lng}/quiz` },
-        { name: t('nav.about'), href: `/${lng}/about` },
+        { name: t('nav.home'), href: `/${lng}`, icon: Globe },
+        { name: t('nav.explore'), href: `/${lng}/explore`, icon: Compass },
+        { name: t('nav.discovery'), href: `/${lng}/discovery`, icon: Microscope },
+        { name: t('nav.compare'), href: `/${lng}/compare`, icon: BarChart2 },
+        { name: t('nav.quiz'), href: `/${lng}/quiz`, icon: BookOpen },
+        { name: t('nav.about'), href: `/${lng}/about`, icon: Info },
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <nav className="fixed top-0 left-0 right-0 z-[60] px-6 py-4">
             <div className="max-w-7xl mx-auto">
-                <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl px-6 py-3 flex items-center justify-between shadow-xl">
+                <div className="glass rounded-2xl px-6 py-2.5 flex items-center justify-between shadow-2xl border-white/5">
                     {/* Logo */}
-                    <Link href={`/${lng}`} className="flex items-center gap-2 text-white font-bold text-xl tracking-wider group">
-                        <div className="p-2 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg group-hover:scale-110 transition-transform">
+                    <Link href={`/${lng}`} className="flex items-center gap-2.5 text-white font-bold text-xl tracking-[0.1em] group">
+                        <div className="p-2.5 bg-linear-to-br from-solar-orange to-red-600 rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-[0_0_20px_rgba(251,146,60,0.4)]">
                             <Rocket className="w-5 h-5 text-white" />
                         </div>
-                        <span>SOLAR<span className="text-orange-400">IS</span></span>
+                        <span className="font-orbitron tracking-widest text-lg">SOLAR<span className="text-solar-orange">IS</span></span>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className={clsx(
-                                    "relative text-sm font-medium transition-colors hover:text-orange-400",
-                                    pathname === item.href ? "text-orange-400" : "text-gray-300"
-                                )}
-                            >
-                                {item.name}
-                                {pathname === item.href && (
-                                    <motion.div
-                                        layoutId="navbar-indicator"
-                                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-400 rounded-full"
-                                    />
-                                )}
-                            </Link>
-                        ))}
+                    <div className="hidden lg:flex items-center gap-6">
+                        {navItems.map((item) => {
+                            const Icon = item.icon;
+                            const isActive = pathname === item.href;
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={clsx(
+                                        "relative px-3 py-1.5 flex items-center gap-2 text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 group",
+                                        isActive ? "text-solar-orange" : "text-white/60 hover:text-white"
+                                    )}
+                                >
+                                    <Icon className={clsx("w-4 h-4 transition-transform group-hover:scale-110", isActive && "text-glow")} />
+                                    <span>{item.name}</span>
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="navbar-indicator"
+                                            className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-solar-orange rounded-full shadow-[0_0_10px_rgba(251,146,60,0.8)]"
+                                        />
+                                    )}
+                                </Link>
+                            );
+                        })}
+                        <div className="w-px h-6 bg-white/10 mx-2" />
                         <LanguageSwitcher lng={lng} />
                     </div>
+
 
                     {/* Mobile Menu Button */}
                     <button
